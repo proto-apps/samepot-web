@@ -10,9 +10,9 @@
 User.delete_all
 
 user1 = User.create!(
-  name:     'yo_waka',
-  password: 'waka0930',
-  email:    'y.wakahara@gmail.com',
+  name:     'test1',
+  password: 'test1test1',
+  email:    'test1@samepot.net',
   birthday: '1981-10-15',
   timezone: 'Tokyo',
   locale: 'ja'
