@@ -1,4 +1,4 @@
-# samepot-web [![Build Status](https://travis-ci.org/proto-apps/samepot-web.png?branch=master)](https://travis-ci.org/proto-apps/samepot)
+# samepot-web [![Build Status](https://travis-ci.org/proto-apps/samepot-web.png?branch=master)](https://travis-ci.org/proto-apps/samepot-web)
 
 簡単で楽しいを目指すプロジェクト推進ツール  
 アプリ名は「同じ釜の飯を食う」から
