@@ -12,11 +12,9 @@ development:
   adapter: mysql2
   encoding: utf8
   database: samepot
-  pool: 5
   username: root
   password:
-  host: localhost
-  socket: /tmp/mysql.sock
+  host: 127.0.0.1
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -24,11 +22,9 @@ test:
   adapter: mysql2
   encoding: utf8
   database: samepot_test
-  pool: 5
   username: root
   password:
-  host: localhost
-  socket: /tmp/mysql.sock
+  host: 127.0.0.1
 production:
   adapter: mysql2
   encoding: utf8
