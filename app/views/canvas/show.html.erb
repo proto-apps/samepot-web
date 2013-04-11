@@ -1,0 +1,79 @@
+<% @title = t('canvas.show.title') %>
+
+<% content_for :js do %>
+<script>
+  util.data.set('canvas', <%= json @canvas %>);
+</script>
+<% end %>
+
+<%= render partial: "navigation", locals: {path: 'canvas'} %>
+
+<div class="container canvas">
+  <div class="contents">
+    <table id="canvas" class="canvas-table">
+      <tbody>
+        <tr>
+          <td class="box-20" rowspan="2">
+            <div id="canvas-problem"></div>
+          </td>
+          <td class="box-20">
+            <div id="canvas-solution"></div>
+          </td>
+          <td class="box-20" rowspan="2">
+            <div id="canvas-unique_value"></div>
+          </td>
+          <td class="box-20">
+            <div id="canvas-unfair_advantage"></div>
+          </td>
+          <td class="box-20" rowspan="2">
+            <div id="canvas-customer"></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="box-20">
+            <div id="canvas-key_metrics"></div>
+          </td>
+          <td class="box-20">
+            <div id="canvas-channels"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="canvas-table" style="border-top:none">
+      <tbody>
+        <tr>
+          <td class="box-50">
+            <div id="canvas-cost_structure"></div>
+          </td>
+          <td class="box-50">
+            <div id="canvas-revenue_streams"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script type="text/template" id="canvas-template">
+  <div class="canvas-item-header">
+    <h3><%%= name %></h3>
+    <span class="canvas-action">
+      <a class="button primary icon edit" href="javascript:void(0)"><%= t 'action.edit' %></a>
+    </span>
+  </div>
+  <div class="canvas-item-contents">
+    <p><%%= contents %></p>
+  </div>
+</script>
+<script type="text/template" id="canvas-form-template">
+  <div class="canvas-item-header">
+    <h3><%%= name %></h3>
+    <span class="canvas-action">
+      <button class="button action save" type="submit"><%= t 'action.save' %></button>
+      <a class="cancel" href="javascript:void(0)"><%= t 'action.cancel' %></a>
+    </span>
+  </div>
+  <div class="canvas-item-contents">
+    <p><textarea name="<%%= name %>"><%%= contents %></textarea></p>
+  </div>
+</script>

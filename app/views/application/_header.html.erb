@@ -1,0 +1,44 @@
+<div id="header">
+  <!-- logo, notification, context switch -->
+  <div class="header-left">
+    <ul class="header-nav">
+      <li>
+        <%= link_to 'Samepot', home_path, {class: 'logo'} %>
+      </li>
+    </ul>
+  </div>
+  <!-- user menu, help menu -->
+  <div class="header-right">
+    <ul class="header-nav">
+      <li>
+        <div id="header-user" class="dropdown">
+          <% if current_user.image_token %>
+            <%= image_tag download_image_path(token: current_user.image_token, size: "small"), {class: "icon-user"} %>
+          <% else %>
+            <%= user_image_tag "small", {class: "icon-user"} %>
+          <% end %>
+          <%= current_user.name %>
+        </div>
+      </li>
+      <li>
+        <div id="header-help" class="dropdown">
+          <%= t 'common.help' %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="header-user-menu" class="header-menu" style="display:none">
+  <ul>
+    <li><%= link_to t('settings.user'), user_path %></li>
+    <li class="separator"></li>
+    <li><%= link_to t('settings.signout'), logout_path %></li>
+  </ul>
+</div>
+<div id="header-help-menu" class="header-menu" style="display:none">
+  <ul>
+    <li><a href="#"><%= t 'common.help' %></a></li>
+    <li class="separator"></li>
+    <li><a href="#"><%= t 'common.feedback' %></a></li>
+  </ul>
+</div>

@@ -1,0 +1,180 @@
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/border-radius";
+
+/**
+ * Form
+ */
+
+.form {
+}
+
+.form .row {
+  @include pie-clearfix;
+  margin: 15px 0;
+}
+
+.form .col {
+  float: left;
+}
+
+.form .title {
+  margin: 0 0 8px 0;
+
+  label {
+    position: relative;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .required {
+    margin-left: 3px;
+    color: #ff0000;
+  }
+}
+
+.form .image {
+  img {
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+}
+
+.form .description {
+  padding: 5px 5px 15px;
+  line-height: 1.6;
+  color: #666;
+  font-size: 14px;
+}
+
+form .actions {
+  padding: 10px 0 10px;
+
+  .button {
+    min-width: 100px;
+  }
+
+  .link {
+    margin-left: 15px;
+  }
+}
+
+form .cancel {
+  margin-left: 15px;
+}
+
+form .errors {
+  padding: 5px 0;
+  color: #ff0000;
+}
+
+
+/**
+ * Inputs
+ */
+
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=search],
+textarea {
+  border: 1px solid #ccc;
+  @include border-radius(3px);
+  background: #fafafa none no-repeat right center;
+  box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 1px;
+  box-sizing: border-box;
+  outline: none;
+
+  &:focus {
+    border-color: #56b4ef;
+    background-color: #ffffff;
+  }
+}
+
+.form {
+  input[type=text],
+  input[type=password] {
+    box-sizing: border-box;
+    width: 400px;
+    margin-right: 5px;
+    padding: 6px 6px 8px;
+    color: #333;
+    font-size: 13px;
+  }
+
+  textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    min-height: 100px;
+    font-size: 12px;
+  }
+}
+
+.form.large {
+  input[type=text],
+  input[type=password],
+  input[type=number],
+  input[type=search] {
+    width: 400px;
+    min-height: 34px;
+    padding: 7px 8px;
+  }
+
+  textarea {
+    padding: 7px 8px;
+  }
+
+  .selecter-selected {
+    line-height: 22px;
+  }
+}
+
+
+/**
+ * File
+ */
+
+.image {
+  @include pie-clearfix;
+  img {
+    float: left;
+  }
+  .noimage {
+    float: left;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  .fileinput-button {
+  }
+}
+
+.selected-file {
+  float: left;
+  margin-left: 8px;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.progress {
+  line-height: 20px;
+}
+
+.finished {
+  color: green;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/**
+ * Desktop notification
+ */
+
+#desktop-notification-setting {
+  span {
+    padding: 10px 0;
+    font-size: 14px;
+  }
+}

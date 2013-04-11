@@ -1,0 +1,288 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.fs.selecter
+ *= require jquery_notification
+ *= require_tree ./scss
+ */
+
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/transition";
+@import "compass/utilities/general/clearfix";
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: asset-url("bg/site_1.jpg") no-repeat left 56px;
+  font-family: "AvenirNextLTW01-Regular",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+/**
+ * Header
+ */
+
+$header-height: 56px;
+
+#header {
+  position: relative;
+  @include pie-clearfix;
+  height: $header-height;
+  padding: 0 30px;
+  border-bottom: 1px solid #d8d8d8;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 0 #fff;
+
+  .logo {
+    display: inline-block;
+    width: 100px;
+    line-height: $header-height;
+    font-size: 16px;
+  }
+
+  ul {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: $header-height;
+    margin: 0 30px 0 0;
+    padding: 0;
+    @include pie-clearfix;
+
+    li {
+      float: left;
+      list-style-type: none;
+
+      a {
+        display: inline-block;
+        padding: 0 20px;
+        line-height: $header-height;
+        color: #333;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+
+/**
+ * Footer
+ */
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: #f1e6c8;
+  font-size: 11px;
+  text-align: center;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+  z-index: 9999;
+
+  .footer-inner {
+    padding: 3px 90px 30px 50px;
+  }
+}
+
+ul.social {
+  margin: 0 0 15px;
+  padding: 0;
+  @include pie-clearfix;
+
+  li {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-left: 15px;
+  }
+
+  a {
+    display: block;
+    width: 28px;
+    height: 28px;
+    background-image: asset-url("icon/icons_social.png");
+    background-repeat: no-repeat;
+    text-indent: 1000px;
+    overflow: hidden;
+
+    &.twitter {
+      background-position: -77px 0;
+    }
+    &.facebook {
+      background-position: 0 0;
+    }
+    &.goog {
+      background-position: -115px 0;
+    }
+  }
+}
+
+
+/**
+ * Container
+ */
+
+.top-wrap {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
+}
+
+.top-container {
+  height: 100%;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+
+  .banner-contents {
+    margin-top: 10%;
+    padding: 0 5%;
+  }
+
+  .feature-contents {
+    margin-top: 10%;
+    padding: 5% 5%;
+
+    h2 {
+      padding: 0 10px 20px;
+      color: #fff;
+    }
+  }
+}
+
+.feature {
+  .feature-inner {
+    height: 250px;
+    margin: 0 10px;
+    background-color: #f3f3f3;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
+  }
+
+  h3 {
+    padding: 20px 10px 10px;
+    font-size: 15px;
+  }
+
+  p {
+    padding: 0 10px;
+    line-height: 2.0;
+    font-size: 14px;
+  }
+}
+
+
+.site-container {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
+}
+
+.banner {
+  padding-right: 20px;
+}
+
+.banner-text {
+  margin: 0;
+  padding: 0 0 0.3em;
+  color: #fff;
+  font-size: 32px;
+}
+
+.banner-text-sub {
+  padding: 0 0 2em;
+  color: #f1e6c8;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.banner-signup {
+  a.button {
+    width: 300px;
+    border: 1px solid #186098;
+    border-bottom-color: #003672;
+    background-color: #0066d8;
+    @include background-image(linear-gradient(#3795df, #0066d8));
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.5) !important;
+
+    &:hover {
+      border-bottom-color: #00428b;
+      background-color: #4da1e3;
+      @include background-image(linear-gradient(#4da1e3, #0072f2));
+      color: #fff;
+    }
+  }
+}
+
+#login-form {
+  margin: 1em auto 0;
+
+  & > div {
+    margin-bottom: 10px;
+  }
+
+  input[type=text],
+  input[type=password] {
+    box-sizing: border-box;
+    width: 350px;
+    padding: 10px 10px;
+    border-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  p.actions {
+  }
+
+  .button {
+    border: 1px solid #666;
+  }
+
+  .link {
+    color: #f0f0f0;
+  }
+
+  .demo {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 13px;
+
+    h4 {
+      font-size: 13px;
+    }
+  }
+}
+
+
+/**
+ * Signup and verify
+ */
+
+.info-wrap {
+  width: 768px;
+  margin: 5% auto 0;
+  text-shadow: none;
+}

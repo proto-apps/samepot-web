@@ -1,0 +1,24 @@
+<% @title = t('sites.verify.title') %>
+
+<% content_for :js do %>
+<script>
+  setTimeout(function() {
+    location.href = util.uri.page('home');
+  }, 5000);
+</script>
+<% end %>
+
+<% cache "sites_verify" do %>
+<div class="site-container">
+  <div class="info-wrap">
+    <div class="info-wrap-inner">
+      <div class="form">
+        <h1><%= t 'sites.verify.title' %></h1>
+        <p style="padding: 20px">
+          <%= t 'sites.verify.move' %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

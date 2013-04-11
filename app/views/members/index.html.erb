@@ -1,0 +1,79 @@
+<% @title = t('members.index.title') %>
+
+<% content_for :js do %>
+<script>
+  util.data.set('current_project', <%= json current_project %>);
+  util.data.set('members', <%= json current_project.users %>);
+  util.data.set('enable_invite', <%= invite_member? %>);
+</script>
+<% end %>
+
+<%= render partial: "navigation", locals: {path: nil} %>
+
+<div class="container members">
+  <div class="contents">
+  <% if current_project.administrator_id == current_user.id %>
+    <div class="info-wrap" style="margin-bottom: 20px">
+      <div class="info-wrap-inner">
+        <p class="beta-warn"><%= t'members.beta_warn' %></p>
+        <form id="member-form" class="form large" name="member">
+          <dl class="row">
+            <dd class="body">
+              <input type="text" name="email" value="" placeholder="<%= t 'members.index.invite_mail' %>" disabled=true autocomplete="off" />
+              <button class="button primary action disable" type="submit"><%= t 'action.invite' %></button>
+            </dd>
+          </dl>
+          <div id="invite_errors" class="errors">
+            <% unless invite_member? %>
+              <p><%= t 'members.over_limited' %></p>
+            <% end %>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- invite list -->
+    <h2><%= t 'members.index.invited' %></h2>
+    <ul class="list head">
+      <li>
+        <div class="list-item clearfix">
+          <span class="list-item-col email"><%= t 'common.email' %></span>
+          <span class="list-item-col expired"><%= t 'common.expired' %></span>
+        </div>
+      </li>
+    </ul>
+    <ul class="list" style="margin-bottom: 40px">
+      <% @invited.each do |i| %>
+        <li>
+          <div class="list-item clearfix">
+            <span class="list-item-col email"><%= i.email %></span>
+            <span class="list-item-col expired"><%= i.expired.strftime("%Y-%m-%d %H:%M") %></span>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+    <!-- member list -->
+    <h2><%= t 'members.index.members' %></h2>
+    <ul class="list head">
+      <li>
+        <div class="list-item clearfix">
+          <span class="list-item-col name"><%= t 'common.name' %></span>
+          <span class="list-item-col email"><%= t 'common.email' %></span>
+        </div>
+      </li>
+    </ul>
+    <ul id="member-list" class="list"></ul>
+  </div>
+</div>
+
+<script type="text/template" id="member-template">
+  <div data-milestone-id="<%%= id %>" class="list-item clearfix">
+    <div class="left">
+      <span class="list-item-col name"><%%= name %></span>
+      <span class="list-item-col email"><%%= email %></span>
+    </div>
+    <div class="right">
+      <span class="list-action"></span>
+    </div>
+  </div>
+</script>

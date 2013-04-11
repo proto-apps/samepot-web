@@ -1,0 +1,689 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
+ *= require jquery.ui.datepicker
+ *= require jquery.fileupload-ui
+ *= require jquery.fs.selecter
+ *= require jquery_notification
+ *= require_tree ./scss
+ */
+
+@import "compass/utilities/general/clearfix";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/images";
+
+
+html {
+  background-color: #fff;
+}
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+}
+
+
+/**
+ * Header
+ */
+
+$header-height: 36px;
+
+#header {
+  position: relative;
+  @include pie-clearfix;
+  height: $header-height;
+  padding: 0 30px;
+  border-bottom: 1px solid #d8d8d8;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 0 #fff;
+}
+
+.header-left {
+  float: left;
+
+  .logo {
+    display: block;
+    width: 100px;
+    line-height: $header-height;
+    font-size: 16px;
+  }
+}
+
+.header-right {
+  float: right;
+}
+
+ul.header-nav {
+  display: block;
+  height: $header-height;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    .dropdown {
+      height: $header-height;
+      line-height: $header-height;
+      margin: 0 0 0 15px;
+      padding-right: 15px;
+      background: transparent;
+      background: asset-url("icon/down_8x6.png") no-repeat right 15px;
+      cursor: pointer;
+    }
+
+    .icon-user {
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+}
+
+
+/**
+ * Footer
+ */
+
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  font-size: 11px;
+  z-index: 9999;
+
+  .footer-inner {
+    padding: 3px 30px 5px;
+  }
+}
+
+
+/**
+ * Application navi
+ */
+
+#navigation {
+  @include pie-clearfix;
+  margin: 15px 30px 0;
+  border-bottom: 1px solid #ccc;
+
+  h2 {
+    padding-bottom: 5px;
+
+    img {
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+    a {
+      color: #333;
+    }
+  }
+
+  .ntf-lamp {
+    display: block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    margin-left: 20px;
+    text-align: center;
+
+    img {
+      vertical-align: text-top;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include pie-clearfix;
+    font-weight: bold;
+  }
+
+  li {
+    &.current a {
+      border-bottom-color: #d26911;
+      color: #000;
+    }
+  }
+
+  li > a {
+    display: block;
+    width: 150px;
+    line-height: 30px;
+    color: #777;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      color: #4183c4;
+      border-bottom-color: #cfdce8;
+      text-decoration: none;
+    }
+  }
+
+  .selecter {
+    margin-top: -3px;
+    margin-left: 20px;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+/**
+ * Contents
+ */
+
+.container {
+  position: relative;
+  margin: 20px 20px 50px;
+}
+
+.contents-menu {
+  position: relative;
+  margin: 0 15px 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.contents {
+  position: relative;
+  padding: 5px 15px 10px;
+}
+
+
+/**
+ * Home
+ */
+
+.project-wrap {
+  margin: 0 10px 20px 0;
+  /*padding: 3px;
+  border-radius: 3px;
+  background: #eee;*/
+}
+
+.project {
+  display: block;
+  padding: 10px 10px 15px;
+  /*border: 1px solid #cacaca;*/
+  background: #fff;
+
+  &:hover {
+    background-color: #e4e5e7;
+    text-decoration: none;
+  }
+
+  h2 {
+    line-height: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #3f3f3f;
+    color: #444;
+    font-size: 27px;
+    font-weight: 200;
+  }
+
+  ul {
+    margin: 20px 0 0;
+    padding: 0;
+    @include pie-clearfix;
+  }
+  li {
+    float: left;
+    margin-right: 10px;
+    list-style-type: none;
+
+    span {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+
+/**
+ * Project top
+ */
+
+#talk-form {
+  margin-bottom: 15px;
+  padding-right: 20px;
+
+  .side {
+    float: left;
+    width: 30px;
+
+    .icon {
+      display: inline-block;
+      width: 20px;
+      line-height: 28px;
+      margin: 0 5px;
+      text-align: center;
+
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+  .main {
+    padding: 0 7px 0 40px;
+  }
+
+  input[type=text] {
+    width: 100%;
+  }
+}
+
+#activity-filter {
+  padding-right: 27px;
+  text-align: right;
+
+  a {
+    margin-left: 10px;
+
+    &.current {
+      color: #333;
+      font-weight: bold;
+    }
+  }
+}
+
+#activity-list {
+  margin: 0;
+  padding: 0 20px 0 0;
+
+  li {
+    position: relative;
+    display: block;
+    padding: 10px 0 0;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
+    list-style-type: none;
+    @include pie-clearfix;
+  }
+
+  .side {
+    float: left;
+    width: 30px;
+
+    .icon {
+      display: inline-block;
+      width: 20px;
+      margin: 0 5px;
+      text-align: center;
+    }
+  }
+  .main {
+    padding: 0 60px 0 40px;
+
+    .head {
+      color: #777;
+    }
+
+    .body-wrap {
+      padding: 7px 0 5px;
+
+      .body {
+        font-size: 13px;
+      }
+    }
+  }
+  .meta {
+    position: absolute;
+    width: 100px;
+    top: 10px;
+    right: 7px;
+    color: #777;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+.milestone-current,
+.top-tasks {
+  margin-left: 20px;
+
+  h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+
+    a {
+      color: #666;
+    }
+  }
+}
+
+.milestone-current {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.milestone-completed {
+  padding: 3px 0 10px;
+  font-size: 14px;
+  font-weight: bold;
+
+  span {
+    margin-left: 6px;
+    color: #888;
+    font-weight: normal;
+  }
+}
+
+.milestone-summary {
+  padding: 5px 0 0;
+  font-size: 13px;
+  letter-spacing: normal;
+  @include pie-clearfix;
+
+  & > a {
+    float: left;
+    margin-right: 10px;
+    line-height: 24px;
+  }
+
+  span.status {
+    margin-left: 3px;
+    background-color: transparent;
+
+    &.all {
+      color: #000;
+    }
+    &.none {
+      color: #abbcbc;
+    }
+    &.doing {
+      color: #68c39f;
+    }
+    &.review {
+      color: #4aa0be;
+    }
+    &.done {
+      color: #798585
+    }
+    &.pending {
+      color: #f9c732;
+    }
+  }
+}
+
+.top-tasks {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+
+  .task {
+    margin-bottom: 7px;
+  }
+}
+
+.task-doing-head {
+  padding-top: 5px;
+}
+
+.task-doing-body {
+  padding: 10px 0 0 20px;
+  font-size: 13px;
+}
+
+
+/**
+ * Milestone
+ */
+
+.milestones .list-item,
+.milestones .list-form {
+  min-width: 900px;
+
+  .name {
+    width: 400px;
+  }
+  .start_day {
+    width: 150px;
+  }
+  .end_day {
+    width: 150px;
+  }
+
+  .list-action {
+    width: 200px;
+  }
+}
+
+
+/**
+ * Task list
+ */
+
+#task-info .form {
+  padding: 0;
+}
+
+.task-form-wrap {
+  .button.add {
+    padding: 6px 1em 4px;
+  }
+
+  .form input[type="text"] {
+    padding: 6px;
+  }
+}
+
+.task-form-advanced {
+  padding: 15px 0 0 35px;
+}
+
+.task-switch {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+
+#task-filter {
+  .selecter-selected {
+    line-height: 1.0;
+  }
+  .selecter-item {
+    line-height: 1.6;
+  }
+}
+
+.tasks .list-item,
+.tasks .list-form {
+  min-width: 970px;
+
+  .name {
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    .link.commented {
+      padding-left: 20px;
+      background: asset-url("icon/comment_16x14.png") no-repeat left center;
+    }
+  }
+  .milestone {
+    width: 150px;
+  }
+  .priority {
+    width: 100px;
+  }
+  .status-wrap {
+    width: 130px;
+
+    .status {
+      display: inline-block;
+      min-width: 80px;
+      line-height: 1.2;
+      padding: 4px 0.3em 4px 0.6em;
+      border-radius: 3px;
+    }
+  }
+  .assignee {
+    width: 120px;
+  }
+  .reviewer {
+    width: 120px;
+  }
+  .list-action {
+    width: 80px;
+  }
+}
+
+#task-list {
+  .list-item {
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+
+/**
+ * Task info
+ */
+
+#task-status-form {
+  padding-top: 2px;
+  padding-left: 30px;
+
+  .status {
+    display: block;
+    margin-bottom: 10px;
+    padding: 7px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+
+  .selecter {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+#task-info form {
+  .selecter .selecter-selected {
+    padding: 3px 30px 2px 10px;
+  }
+}
+
+#task-comment-list {
+  margin: 25px 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+
+/**
+ * Canvas
+ */
+
+$canvas-border-color: #bbb;
+
+table.canvas-table {
+  table-layout: fixed;
+  width: 100%;
+  border-top: 1px solid $canvas-border-color;
+  border-spacing: 0;
+  box-sizing: border-box;
+
+  tr {
+    border-bottom: 1px solid $canvas-border-color;
+  }
+  td {
+    border-left: 1px solid $canvas-border-color;
+    border-right: 1px solid $canvas-border-color;
+    vertical-align: top;
+  }
+}
+
+.canvas-item-header {
+  position: relative;
+  border-bottom: 1px solid #ccc;
+  background-color: #e0e0e0;
+  @include pie-clearfix;
+
+  h3 {
+    line-height: 32px;
+    padding-left: 5px;
+    font-size: 12px;
+  }
+  .canvas-action {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    line-height: 32px;
+
+    .button {
+      padding: 3px 7px 2px 10px;
+    }
+  }
+}
+
+.canvas-item-contents {
+  position: relative;
+  min-height: 100px;
+
+  p {
+    padding: 5px;
+    white-space: pre-wrap;
+  }
+  textarea {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    left: 1px;
+  }
+}
+
+
+/**
+ * Members
+ */
+
+.members .list-item {
+  min-width: 900px;
+
+  .name {
+    width: 300px;
+  }
+  .email {
+    width: 400px;
+  }
+
+  .list-action {
+    width: 200px;
+  }
+}
+

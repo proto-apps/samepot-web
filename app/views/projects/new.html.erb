@@ -1,0 +1,28 @@
+<% @title = t('projects.new.title') %>
+
+<div id="navigation">
+  <h2><%= t 'projects.new.title' %></h2>
+</div>
+<div class="container">
+  <div class="contents">
+    <div class="info-wrap">
+      <div class="info-wrap-inner">
+        <p class="beta-warn"><%= t 'projects.beta_warn' %></p>
+        <form id="project-form" class="form large" name="project">
+          <dl class="row">
+            <dt class="title">
+              <label><%= t 'common.name' %></label>
+            </dt>
+            <dd class="body">
+              <input type="text" name="name" value="" />
+            </dd>
+          </dl>
+          <p class="actions">
+            <button class="button primary action icon add" type="submit"><%= t 'action.create' %></button>
+          </p>
+          <div id="project-form-errors" class="errors"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

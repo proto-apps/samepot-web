@@ -1,0 +1,191 @@
+<% @title = @task.name %>
+
+<% content_for :js do %>
+<script>
+  util.data.set('task', <%= json @task %>);
+  util.data.set('comments', <%= json @task.comments %>);
+  util.data.set('milestones', <%= json @milestones %>);
+  util.data.set('priorities', <%= json @priorities %>);
+  util.data.set('members', <%= json @members %>);
+</script>
+<% end %>
+
+<%= render partial: "navigation", locals: {path: 'tasks'} %>
+
+<div class="container task">
+  <div class="contents-menu">
+    <div class="button-container">
+      <%= link_to t('action.back'), project_tasks_path, {class: 'button'} %>
+      <div class="button-group" style="margin-left: 15px">
+        <% if @prev.present? %>
+          <%= link_to t('action.prev'), project_task_path(id: @prev.id), class: "button pill icon arrowleft" %>
+        <% else %>
+          <span class="button pill icon arrowleft disable"><%= t 'action.prev' %></span>
+        <% end %>
+        <% if @next.present? %>
+          <%= link_to t('action.next'), project_task_path(id: @next.id), class: "button pill icon arrowright" %>
+        <% else %>
+          <span class="button pill icon arrowright disable"><%= t 'action.next' %></span>
+        <% end %>
+      </div>
+      <a id="task-delete" class="button icon caution delete right" href="javascript:void(0)"><%= t 'action.delete' %></a>
+    </div>
+  </div>
+  <div class="contents">
+    <div class="boxes">
+      <div class="box-80 left">
+        <!-- task info -->
+        <div class="info-wrap">
+          <div id="task-info" class="info-wrap-inner"></div>
+        </div>
+        <!-- comments -->
+        <ul id="task-comment-list" class="comments"></ul>
+        <!-- new comment form -->
+        <form id="task-comment-form" class="form comment-item" name="task_comment">
+          <% if current_user.image_token? %>
+            <%= image_tag download_image_path(token: current_user.image_token, size: "large"), class: "left" %>
+          <% else %>
+            <%= user_image_tag "large", class: "left" %>
+          <% end %>
+          <div class="comment-main">
+            <div class="info-wrap">
+              <div class="info-wrap-inner">
+                <div class="info-contents">
+                  <textarea name="content" class="input"></textarea>
+                </div>
+              </div>
+            </div>
+            <p class="actions">
+              <button class="button action icon comment" type="submit"><%= t('common.comment') %></button>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="box-20 right">
+        <form id="task-status-form" class="form" name="task">
+          <p class="status <%= @task.status %>"><%= t "enumerize.status.#{@task.status}" %></p>
+          <%= select_tag "status", options_for_select(@statuses, @task.status) %>
+          <p class="actions">
+            <button class="button action primary" type="submit"><%= t 'action.change' %></button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/template" id="task-template">
+  <div class="info">
+    <div class="info-header">
+      <h2><%%= name %></h2>
+      <span class="info-action">
+        <a class="button primary icon edit" href="javascript:void(0)"><%= t 'action.edit' %></a>
+      </span>
+    </div>
+    <div class="info-items boxes">
+      <div class="box-50 left">
+        <dl>
+          <dt><%= t 'tasks.milestone' %></dt>
+          <dd><%%= milestone.name %></dd>
+        </dl>
+        <dl>
+          <dt><%= t 'tasks.priority' %></dt>
+          <dd><%%= priority %></dd>
+        </dl>
+      </div>
+      <div class="box-50 right">
+        <dl>
+          <dt><%= t 'tasks.assignee' %></dt>
+          <dd><%%= assignee.name %></dd>
+        </dl>
+        <dl>
+          <dt><%= t 'tasks.reviewer' %></dt>
+          <dd><%%= reviewer.name %></dd>
+        </dl>
+      </div>
+    </div>
+    <div class="info-contents">
+      <p class="wrap"><%%= linked_description %></p>
+    </div>
+    <div class="info-meta">
+      <%= t 'common.createdAt'%>: 
+      <span class="creator"><%%= creator.name %></span>
+      <span class="created-at"><%%= created_at %></span>
+      <%= t 'common.updatedAt'%>: 
+      <span class="updator"><%%= updator.name %></span>
+      <span class="updated-at"><%%= updated_at %></span>
+    </div>
+  </div>
+</script>
+<script type="text/template" id="task-form-template">
+  <form name="task" class="form">
+    <div class="info">
+      <div class="info-header">
+        <input type="text" class="input" name="name" value="<%%- name %>" />
+        <span class="info-action">
+          <button class="button action primary" type="submit"><%= t 'action.save' %></button>
+          <a class="cancel" href="javascript:void(0)"><%= t 'action.cancel' %></a>
+        </span>
+      </div>
+      <div class="info-items boxes">
+        <div class="box-50 left">
+          <dl>
+            <dt><%= t 'tasks.milestone' %></dt>
+            <dd>
+              <%= select_tag "milestone_id", options_for_select(@milestones.map {|m| [m.name, m.id]}), prompt: t('tasks.milestone') %>
+            </dd>
+          </dl>
+          <dl>
+            <dt><%= t 'tasks.priority' %></dt>
+            <dd>
+              <%= select_tag "priority", options_for_select(@priorities), prompt: t('tasks.priority') %>
+            </dd>
+          </dl>
+        </div>
+        <div class="box-50 right">
+          <dl>
+            <dt><%= t 'tasks.assignee' %></dt>
+            <dd>
+              <%= select_tag "assignee_id", options_for_select(@members.map {|m| [m.name, m.id]}), prompt: t('tasks.assignee') %>
+            </dd>
+          </dl>
+          <dl>
+            <dt><%= t 'tasks.reviewer' %></dt>
+            <dd>
+              <%= select_tag "reviewer_id", options_for_select(@members.map {|m| [m.name, m.id]}), prompt: t('tasks.reviewer') %>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      <div class="info-contents">
+        <p><textarea name="description"><%%= description %></textarea></p>
+      </div>
+      <div class="info-meta">
+        <%= t 'common.createdAt'%>: 
+        <span class="creator"><%%= creator.name %></span>
+        <span class="created-at"><%%= created_at %></span>
+        <%= t 'common.updatedAt'%>: 
+        <span class="updator"><%%= updator.name %></span>
+        <span class="updated-at"><%%= updated_at %></span>
+      </div>
+    </div>
+  </form>
+</script>
+<script type="text/template" id="task-comment-template">
+  <div class="comment-item">
+    <img src="<%%= image %>" class="left" />
+    <div class="comment-main info-wrap">
+      <div class="info-wrap-inner">
+        <div class="comment-header">
+          <%= image_tag('icon/comment_16x14.png') %>
+          <a class="comment-creator" href="#"><%%= creator.name %></a>
+          <div class="actions right"></div>
+          <span class="comment-created-at"><%%= created_at %></span>
+        </div>
+        <div class="info-contents">
+          <p class="wrap"><%%= linked_content %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

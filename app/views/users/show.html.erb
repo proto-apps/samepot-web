@@ -1,0 +1,139 @@
+<% @title = t('users.show.title') %>
+
+<div id="navigation">
+  <h2><%= t 'users.show.title' %></h2>
+</div>
+<div class="container">
+  <div class="contents">
+    <div class="info-wrap">
+      <div class="info-wrap-inner">
+        <form id="user-profile-form" class="form large" name="user">
+          <div class="boxes">
+            <div class="box-50 left">
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'common.name' %></label>
+                </dt>
+                <dd class="body">
+                  <input type="text" name="name" value="<%= current_user.name %>" />
+                </dd>
+              </dl>
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'common.email' %></label>
+                </dt>
+                <dd class="body">
+                  <input type="text" name="email" value="<%= current_user.email %>" />
+                </dd>
+              </dl>
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'common.newpassword' %></label>
+                </dt>
+                <dd class="body">
+                  <input type="text" name="newpassword" value="<%= current_user.password %>" />
+                </dd>
+              </dl>
+            </div>
+            <div class="box-50 right">
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'common.birthday' %></label>
+                </dt>
+                <dd class="body">
+                  <input type="text" name="birthday" value="<%= current_user.birthday %>" style="width: 120px" />
+                </dd>
+              </dl>
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'common.locale' %></label>
+                </dt>
+                <dd class="body">
+                  <%= select_tag "locale", options_for_select(@locale, current_user.locale) %>
+                </dd>
+              </dl>
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'common.timezone' %></label>
+                </dt>
+                <dd class="body">
+                  <%= select_tag "timezone", time_zone_options_for_select(selected: current_user.timezone) %>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          <p class="actions">
+            <button class="button primary action"><%= t 'action.save' %></button>
+          </p>
+          <div id="profile-form-errors" class="errors"></div>
+        </form>
+      </div>
+    </div>
+    <div class="info-wrap" style="margin-top: 20px;">
+      <div class="info-wrap-inner">
+        <div class="boxes">
+          <div class="box-50 left">
+            <form id="user-image-form" class="form" action="/api/my/image" method="POST" enctype="multipart/form-data">
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'users.image' %></label>
+                </dt>
+                <dd class="body image">
+                  <% if current_user.image_token %>
+                    <%= image_tag download_image_path(token: current_user.image_token, size: "large") %>
+                  <% else %>
+                    <%= user_image_tag "large" %>
+                  <% end %>
+                  <span class="fileinput-button">
+                    <span class="button icon add"><%= t 'action.select' %></span>
+                    <input id="user-image" type="file" name="image" accept="image/*" data-uri="/api/my/image" />
+                  </span>
+                  <p class="selected-file"></p>
+                </dd>
+              </dl>
+              <p class="progress"></p>
+              <p class="actions">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                <span id="file-submit" class="button primary action icon edit disable"><%= t 'action.change' %></span>
+              </p>
+            </form>
+          </div>
+          <div class="box-50 right">
+            <div class="form">
+              <dl class="row">
+                <dt class="title">
+                  <label><%= t 'users.desktop_notification' %></label>
+                </dt>
+                <dd class="body">
+                  <div id="desktop-notification-setting"></div>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="info-wrap" style="margin-top: 40px;">
+      <div class="info-wrap-inner">
+        <form id="user-delete-form" class="form">
+          <dl class="row">
+            <dt class="title">
+              <label><%= t 'users.show.delete_account' %></label>
+            </dt>
+            <dd class="body">
+              <p class="description"><%= t 'users.show.delete_account_description' %></p>
+              <div>
+                <% if @can_account_delete %>
+                  <button class="button caution primary icon delete" type="submit"><%= t 'action.delete_account' %></button>
+                <% else %>
+                  <span class="button caution primary icon delete disable"><%= t 'action.delete_account' %></span>
+                <% end %>
+              </div>
+            </dd>
+          </dl>
+          <div id="user-delete-form-errors" class="errors"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

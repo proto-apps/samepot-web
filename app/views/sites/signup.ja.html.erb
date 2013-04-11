@@ -1,0 +1,36 @@
+<% @title = t('sites.signup.title') %>
+
+<% cache "sites_signup_ja" do %>
+  <div class="site-container">
+    <div class="info-wrap">
+      <div class="info-wrap-inner boxes">
+        <div class="box-60 left">
+          <form id="signup-form" class="form">
+            <h1><%= t 'sites.signup.title' %></h1>
+            <dl class="row">
+              <dd>
+                <input type="text" name="name" value="" placeholder="<%= t 'common.name' %>" />
+              </dd>
+            </dl>
+            <dl class="row">
+              <dd>
+                <input type="text" name="email" value="" placeholder="<%= t 'common.email' %>" autocomplete="off" />
+              </dd>
+            </dl>
+            <dl class="row">
+              <dd>
+                <input type="password" name="password" value="" placeholder="<%= t 'common.password' %>" />
+              </dd>
+            </dl>
+            <p class="actions">
+              <button class="button large primary action"><%= t 'sites.signup.signup' %></button>
+            </p>
+            <div id="signup-form-errors" class="errors"></div>
+          </form>
+        </div>
+        <div class="box-40 right">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

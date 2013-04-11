@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title or "" %> - Samepot</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= yield :css %>
+</head>
+<body class="<%= params[:controller] %>">
+  <%= render "header" %>
+  <%= yield %>
+  <%= render "footer" %>
+  <%= javascript_include_tag "application" %>
+  <%= raw create_script_tag_message %>
+  <script src="<%= socketio_host %>/socket.io/socket.io.js"></script>
+  <script>
+    util.data.set('authenticity_token', '<%= form_authenticity_token %>');
+    util.data.set('current_user', <%= json current_user %>);
+    <% if current_project %>
+      util.data.set('current_project', <%= json current_project %>);
+    <% end %>
+    util.data.set('socketio_host', '<%= socketio_host %>');
+    util.data.set('controller', '<%= params[:controller] %>');
+    util.data.set('action', '<%= params[:action] %>');
+  </script>
+  <%= yield :js %>
+</body>
+</html>

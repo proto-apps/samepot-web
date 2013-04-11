@@ -1,0 +1,441 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/images";
+@import "compass/css3/opacity";
+
+/**
+ * Buttons
+ */
+
+@mixin button-base {
+  position: relative;
+  overflow: visible;
+  display: inline-block;
+  margin: 0;
+  @include border-radius(0.2em);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  /* IE hacks */
+  zoom: 1;
+  *display: inline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+  }
+}
+
+.button {
+  @include button-base;
+
+  padding: 0.5em 1em;
+  font: 11px/normal sans-serif;
+  border: 1px solid #d4d4d4;
+  @include background-image(linear-gradient(#f4f4f4, #ececec));
+  color: #333;
+  text-shadow: 1px 1px 0 #fff;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: #3072b3;
+    border-bottom-color: #2a65a0;
+    background-color: #3C8DDE;
+    @include background-image(linear-gradient(#599bdc, #3072b3));
+    color: #fff;
+  }
+
+  &:active {
+    border-color: #2a65a0;
+    border-bottom-color: #3884CF;
+    background-color: #3072b3;
+    @include background-image(linear-gradient(#3072b3, #599bdc));
+  }
+}
+
+.button.primary {
+  font-weight: bold;
+}
+
+.button.caution {
+  color: #990000;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: #b53f3a;
+    border-bottom-color: #a0302a;
+    background-color: #dc5f59;
+    @include background-image(linear-gradient(#dc5f59, #b33630));
+    color: #fff;
+  }
+
+  &:active {
+    border-color: #a0302a;
+    border-bottom-color: #bf4843;
+    background-color: #b33630;
+    @include background-image(linear-gradient(#b33630, #dc5f59));
+  }
+}
+
+.button.pill {
+  @include border-radius(50em);
+}
+
+.button.large {
+  font-size: 14px;
+}
+
+.button.right {
+  float: right;
+}
+
+.button.action {
+  border-color: #63a62f;
+  border-bottom-color: #5b992b;
+  background-color: #7fbf4d;
+  @include background-image(linear-gradient(#7fbf4d, #63a62f));
+  color: #fff;
+  box-shadow: inset 0 1px 0 0 #96ca6d;
+  text-shadow: 0 -1px 0 #4c9021;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #76b347;
+    @include background-image(linear-gradient(#76b347, #5e9e2e));
+    box-shadow: inset 0 1px 0 0 #8dbf67;
+  }
+
+  &:active {
+    border-color: #5b992b;
+    border-bottom-color: #538c27;
+    @include background-image(linear-gradient(#5e9e2e, #76b347));
+  }
+}
+
+.button.positive {
+  border-color: #6c84ab;
+  border-bottom-color: #5c6f91;
+  background-color: #a5b8da;
+  @include background-image(linear-gradient(#a5b8da, #7089b3));
+  color: #fff;
+  box-shadow: inset 0 1px 0 0 #aec3e5;
+  text-shadow: 0 -1px 1px #64799e;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #9badcc;
+    @include background-image(linear-gradient(#9badcc, #687fa6));
+    box-shadow: inset 0 1px 0 0 #a5b9d9;
+  }
+
+  &:active {
+    border-color: #546685;
+    box-shadow: inset 0 0 8px 2px #7e8da6, 0 1px 0 0 #eeeeee;
+  }
+}
+
+.button.negative {
+  border-color: #df3e3e;
+  border-bottom-color: #990000;
+  background-color: #df3e3e;
+  @include background-image(linear-gradient(#f97171, #df3e3e));
+  color: #ffffff;
+  text-shadow: 0 -1px 0 #990000;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: #b53f3a;
+    border-bottom-color: #a0302a;
+    background-color: #dc5f59;
+    @include background-image(linear-gradient(#dc5f59, #b33630));
+  }
+
+  &:active {
+    border-color: #a0302a;
+    border-bottom-color: #bf4843;
+    background-color: #b33630;
+    @include background-image(linear-gradient(#b33630, #dc5f59));
+  }
+}
+
+.button.important {
+  border-color: #707070;
+  border-bottom-color: #555;
+  background-color: #d93e2a;
+  @include background-image(linear-gradient(#e95c41, #d93e2a));
+  color: #ffffff;
+  text-shadow: 0 -1px 0 #990000;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: #b53f3a;
+    border-bottom-color: #a0302a;
+    background-color: #dc5f59;
+    @include background-image(linear-gradient(#dc5f59, #b33630));
+  }
+
+  &:active {
+    border-color: #a0302a;
+    border-bottom-color: #bf4843;
+    background-color: #b33630;
+    @include background-image(linear-gradient(#b33630, #dc5f59));
+  }
+}
+
+.button.disable {
+  @include opacity(0.5);
+}
+
+
+/**
+ * Button groups
+ */
+
+.button-group {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* IE hacks */
+  zoom: 1;
+  *display: inline;
+
+  li {
+    float: left;
+    padding: 0;
+    margin: 0;
+  }
+
+  .button {
+    float: left;
+    margin-left: -1px;
+  }
+
+  & > .button:not(:first-child):not(:last-child),
+  li:not(:first-child):not(:last-child) .button {
+    @include border-radius(0);
+  }
+
+  & > .button:first-child,
+  li:first-child .button {
+    margin-left: 0;
+    @include border-top-right-radius(0);
+    @include border-bottom-right-radius(0);
+  }
+
+  & > .button:last-child,
+  li:last-child > .button {
+    @include border-top-left-radius(0);
+    @include border-bottom-left-radius(0);
+  }
+}
+
+
+/**
+ * Button container
+ */
+
+.button-container .button,
+.button-container .button-group {
+  vertical-align: top;
+}
+
+
+/**
+ * Icons
+ */
+
+.button.icon:before {
+  content: "";
+  position: relative;
+  float: left;
+  top: 1px;
+  width: 12px;
+  height: 12px;
+  margin: 0 0.75em 0 -0.25em;
+  background: asset-url("icon/buttons.png") 0 99px no-repeat;
+}
+
+.button.add.icon {
+  &:before {
+    background-position: 0 -288px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -288px;
+  }
+}
+.button.action.add.icon {
+  &:before {
+    background-position: -12px -288px;
+  }
+}
+
+.button.delete.icon {
+  &:before {
+    background-position: 0 -60px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -60px;
+  }
+}
+
+.button.edit.icon {
+  &:before {
+    background-position: 0 -264px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -264px;
+  }
+}
+
+.button.chat.icon {
+  &:before {
+    background-position: 0 -96px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -96px;
+  }
+}
+
+.button.comment.icon {
+  &:before {
+    background-position: 0 -132px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -132px;
+  }
+}
+.button.action.comment.icon {
+  &:before {
+    background-position: -12px -132px;
+  }
+}
+
+.button.like.icon {
+  &:before {
+    background-position: 0 -156px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -156px;
+  }
+}
+
+.button.favorite.icon {
+  &:before {
+    background-position: 0 -348px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -348px;
+  }
+}
+
+.button.home.icon {
+  &:before {
+    background-position: 0 -168px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -168px;
+  }
+}
+
+.button.search.icon {
+  &:before {
+    background-position: 0 -228px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -228px;
+  }
+}
+
+.button.user.icon {
+  &:before {
+    background-position: 0 -360px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -360px;
+  }
+}
+
+.button.arrowup.icon {
+  &:before {
+    background-position: 0 0;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px 0;
+  }
+}
+
+.button.arrowdown.icon {
+  &:before {
+    background-position: 0 -12px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -12px;
+  }
+}
+
+.button.arrowleft.icon {
+  &:before {
+    background-position: 0 -24px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -24px;
+  }
+}
+
+.button.arrowright.icon {
+  &:before {
+    background-position: 0 -36px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -36px;
+  }
+}
+
+.button.move.icon {
+  &:before {
+    background-position: 0 -252px;
+  }
+  &:hover:before,
+  &:focus:before,
+  &:active:before {
+    background-position: -12px -252px;
+  }
+}

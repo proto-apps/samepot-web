@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h2><%= @verifier.name %>さん、Samepotへのサインアップありがとうございます。</h2>
+    <hr />
+    <br />
+    <p>入力していただいた内容で仮登録を完了しました。<br />
+    下の本登録用URLにアクセスしていただくことで、本登録が完了になります。</p>
+    <br />
+    <p>本登録URL: <a href="<%= @url %>"><%= @url %></a></p>
+  </body>
+</html>

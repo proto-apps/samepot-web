@@ -1,0 +1,77 @@
+<% @title = t('projects.edit.title') %>
+
+<%= render partial: "navigation", locals: {path: nil} %>
+
+<div class="container">
+  <div class="contents">
+    <div class="info-wrap">
+      <div class="info-wrap-inner">
+        <form id="project-form" class="form large" name="project">
+          <dl class="row">
+            <dt class="title">
+              <label><%= t 'common.name' %></label>
+            </dt>
+            <dd class="body">
+              <input type="text" name="name" value="<%= current_project.name %>" />
+            </dd>
+          </dl>
+          <p class="actions">
+            <button class="button primary action" type="submit"><%= t 'action.save' %></button>
+          </p>
+          <div id="project-form-errors" class="errors"></div>
+        </form>
+      </div>
+    </div>
+    <div class="info-wrap" style="margin-top: 20px;">
+      <div class="info-wrap-inner">
+        <form id="project-image-form" class="form" action="/api/<%= current_project.access_token %>/image" method="POST" enctype="multipart/form-data">
+          <dl class="row">
+            <dt class="title">
+              <label><%= t 'projects.image' %></label>
+            </dt>
+            <dd class="body image">
+              <% if current_project.image_token %>
+                <%= image_tag download_image_path(token: current_project.image_token, size: "large") %>
+              <% else %>
+                <span class="noimage">No image</span>
+              <% end %>
+              <span class="fileinput-button">
+                <span class="button icon add"><%= t 'action.select' %></span>
+                <input id="project-image" type="file" name="image" accept="image/*" data-uri="/api/<%= current_project.access_token %>/image" />
+              </span>
+              <p class="selected-file"></p>
+            </dd>
+          </dl>
+          <p class="progress"></p>
+          <p class="actions">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+            <span id="file-submit" class="button primary action icon edit disable"><%= t 'action.change' %></span>
+          </p>
+          <div id="project-image-form-errors" class="errors"></div>
+        </form>
+      </div>
+    </div>
+    <div class="info-wrap" style="margin-top: 40px;">
+      <div class="info-wrap-inner">
+        <form id="project-delete-form" class="form">
+          <dl class="row">
+            <dt class="title">
+              <label><%= t 'projects.edit.delete_project' %></label>
+            </dt>
+            <dd class="body">
+              <p class="description"><%= t 'projects.edit.delete_project_description' %></p>
+              <div>
+                <% if @can_project_delete %>
+                  <button class="button caution primary icon delete" type="submit"><%= t 'action.delete_project' %></button>
+                <% else %>
+                  <span class="button caution primary icon delete disable"><%= t 'action.delete_project' %></span>
+                <% end %>
+              </div>
+            </dd>
+          </dl>
+          <div id="project-delete-form-errors" class="errors"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h2><%= @user_name %>さんから、"<%= @project_name %>"に招待されました。</h2>
+    <hr />
+    <br />
+    <p>下のURLにアクセスしていただくことで、プロジェクトへ参加することができます。<br />
+       もしこのメールに心当たりがなければ、このメールは破棄してください。</p>
+    <br />
+    <p>プロジェクトへの参加URL: <a href="<%= @url %>"><%= @url %></a></p>
+  </body>
+</html>

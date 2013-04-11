@@ -1,0 +1,117 @@
+<% @title = t('projects.show.title') %>
+
+<% content_for :js do %>
+<script>
+  util.data.set('activities', <%= json @activities %>);
+</script>
+<% end %>
+
+<%= render partial: "navigation", locals: {path: nil} %>
+
+<div class="container">
+  <div class="contents">
+    <div class="boxes">
+      <div class="box-60 left">
+        <!-- talk form -->
+        <form id="talk-form" class="form" name="talk">
+          <div class="side">
+            <span class="icon">
+              <% if current_user.image_token %>
+                <%= image_tag download_image_path(token: current_user.image_token, size: "small") %>
+              <% else %>
+                <%= user_image_tag "small" %>
+              <% end %>
+            </span>
+          </div>
+          <div class="main">
+            <input class="input" type="text" name="message" value="" placeholder="<%= t 'projects.show.talk' %>" />
+          </div>
+        </form>
+        <!-- activities -->
+        <div id="activity-filter">
+          <a data-filter="today" class="current" href="javascript:void(0)"><%= t 'datetime.today' %></a>
+          <a data-filter="yesterday" href="javascript:void(0)"><%= t 'datetime.yesterday' %></a>
+          <a data-filter="week" href="javascript:void(0)"><%= t 'datetime.week' %></a>
+          <a data-filter="2weeks" href="javascript:void(0)"><%= t 'datetime.2weeks' %></a>
+          <a data-filter="month" href="javascript:void(0)"><%= t 'datetime.month' %></a>
+          <a data-filter="3months" href="javascript:void(0)"><%= t 'datetime.3months' %></a>
+          <a data-filter="6months" href="javascript:void(0)"><%= t 'datetime.6months' %></a>
+        </div>
+        <ul id="activity-list"></ul>
+      </div>
+      <div class="box-40 right">
+        <% if @milestone.present? %>
+          <div class="milestone-current">
+            <h3><a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>"><%= @milestone.name %></a></h3>
+            <p class="milestone-completed">
+              <% if @summary["total"] == 0 %>
+                0%<span><%= t 'projects.completed' %></span>
+              <% else %>
+                <%= 100 * @summary["done"] / @summary["total"] %>%<span><%= t 'projects.completed' %></span>
+              <% end %>
+            </p>
+            <div class="milestone-summary">
+              <a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>"><%= t 'common.all' %><span class="status all"><%= @summary["total"] %></span></a>
+              <a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>&status=none"><%= t 'enumerize.status.none' %><span class="status none"><%= @summary["none"] %></span></a>
+              <a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>&status=doing"><%= t 'enumerize.status.doing' %><span class="status doing"><%= @summary["doing"] %></span></a>
+              <a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>&status=review"><%= t 'enumerize.status.review' %><span class="status review"><%= @summary["review"] %></span></a>
+              <a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>&status=done"><%= t 'enumerize.status.done' %><span class="status done"><%= @summary["done"] %></span></a>
+              <a href="<%= project_tasks_path %>?milestone_id=<%= @milestone.id %>&status=pending"><%= t 'enumerize.status.pending' %><span class="status pending"><%= @summary["pending"] %></span></a>
+            </div>
+          </div>
+        <% end %>
+        <div class="top-tasks">
+          <h3><a href="<%= project_tasks_path %>?status=doing"><%= t 'projects.task_doing' %></a></h3>
+          <% @doings.each do |task| %>
+            <div class="task">
+              <p class="task-doing-head">
+                <% if task.assignee.image_token.nil? %>
+                  <span class="user"><img src="<%= asset_path("icon/user_14x18.png") %>" /><%= task.assignee.name %></span>
+                <% else %>
+                  <span class="user"><%= image_tag download_image_path(token: task.assignee.image_token, size: "small") %><%= task.assignee.name %></span>
+                <% end %>
+              </p>
+              <p class="task-doing-body">
+                <%= link_to task.name, project_task_path(token: current_project.access_token, id: task.id) %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+        <div class="top-tasks">
+          <h3><a href="<%= project_tasks_path %>?status=review"><%= t 'projects.task_review' %></a></h3>
+          <% @reviews.each do |task| %>
+            <div class="task">
+              <p class="task-doing-head">
+                <% if task.reviewer.image_token.nil? %>
+                  <span class="user"><img src="<%= asset_path("icon/user_14x18.png") %>" /><%= task.reviewer.name %></span>
+                <% else %>
+                  <span class="user"><%= image_tag download_image_path(token: task.reviewer.image_token, size: "small") %><%= task.reviewer.name %></span>
+                <% end %>
+              </p>
+              <p class="task-doing-body">
+                <%= link_to task.name, project_task_path(token: current_project.access_token, id: task.id) %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/template" id="activity-template">
+  <div class="side">
+    <span class="icon"></span>
+  </div>
+  <div class="main">
+    <div class="head">
+      <span class="user-name"><%%= user.name %></span>
+    </div>
+    <div class="body-wrap">
+      <span class="body"></span>
+    </div>
+  </div>
+  <div class="meta">
+    <span><%%= created_at %></span>
+  </div>
+</script>

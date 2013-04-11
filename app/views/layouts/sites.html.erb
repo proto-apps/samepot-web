@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title or "" %> - Samepot</title>
+  <%= stylesheet_link_tag "site" %>
+  <%= yield :css %>
+</head>
+<body>
+  <%= render "site_header" %>
+  <%= yield %>
+  <%= render "site_footer" %>
+  <%= javascript_include_tag "application" %>
+  <%= raw create_script_tag_message %>
+  <script>
+    util.data.set('authenticity_token', '<%= form_authenticity_token %>');
+    util.data.set('controller', '<%= params[:controller] %>');
+    util.data.set('action', '<%= params[:action] %>');
+  </script>
+  <%= yield :js %>
+</body>
+</html>

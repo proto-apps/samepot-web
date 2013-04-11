@@ -1,0 +1,55 @@
+<% if @is_new %>
+  <% @title = t('sites.invite.title_new') %>
+<% else %>
+  <% @title = t('sites.invite.title') %>
+<% end %>
+
+<% content_for :js do %>
+<script>
+  util.data.set('invite', <%= json @invite %>);
+  util.data.set('is_new', <%= @is_new %>);
+  util.data.set('project', <%= json @project %>);
+</script>
+<% end %>
+
+<div class="site-container">
+  <div class="info-wrap">
+    <div class="info-wrap-inner">
+    <% if @is_new %>
+      <form id="signup-form" class="form large">
+        <h1><%= t 'sites.invite.form' %></h1>
+        <dl class="row">
+          <dd>
+            <input type="text" name="name" value="" placeholder="<%= t 'common.name' %>" />
+          </dd>
+        </dl>
+        <dl class="row">
+          <dt class="title">
+            <label><%= t 'common.email' %></label>
+          </dt>
+          <dd>
+            <p><%= @invite.email %></p>
+            <input type="hidden" name="email" value="<%= @invite.email %>" />
+          </dd>
+        </dl>
+        <dl class="row">
+          <dd>
+            <input type="password" name="password" value="" placeholder="<%= t 'common.password' %>" />
+          </dd>
+        </dl>
+        <p class="actions">
+          <button class="button large primary action"><%= t 'sites.signup.signup' %></button>
+        </p>
+        <div id="errors"></div>
+      </div>
+    <% else %>
+      <div class="form">
+        <h1><%= t 'sites.invite.joinned', name: @project.name %></h1>
+        <p style="padding: 20px">
+          <%= t 'sites.invite.move' %>
+        </p>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
