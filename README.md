@@ -85,3 +85,9 @@ $ RAILS_ENV=test bundle exec konacha:run
 
 リアルタイムアクティビティ通知とチャットに[sameot-realtime](https://github.com/proto-apps/samepot-realtime)を使うので、  
 リポジトリから落として、README.mdの通りセットアップ
+
+
+## 今後のToDo
+
+* タスクかんばんでタスクの棚卸しを簡単に
+* GitHubリポジトリとの関連づけとissuesとの連動
