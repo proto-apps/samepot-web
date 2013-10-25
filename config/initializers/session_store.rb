@@ -42,11 +42,11 @@ module ActionDispatch
   end
 end
 
-# セッションの生存期間は、2週間 
+# セッションの生存期間は、1週間 
 Samepot::Application.config.session_store :redis_store, servers: {
   host: "localhost",
   port: 6379,
   namespace: "_samepot_sessions",
-  db: 6,
-  expire_in: 60 * 60 * 24 * 7 * 2
+  db: 1,
+  expire_in: 60 * 60 * 24 * 7
 }

@@ -36,9 +36,6 @@ Samepot::Application.configure do
     alias_method_chain :call, :quiet_assets 
   end 
 
-  # Socket.io server
-  config.socketio_host = "http://localhost:3333"
-
   # Email sender
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = false

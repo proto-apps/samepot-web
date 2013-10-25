@@ -25,11 +25,11 @@
       this.listenTo(form, 'submit_form', this.submitTalk);
       this.listenTo(filter, 'filter', this.filterItems);
 
-      var socketio = util.SocketIO.getInstance();
+      /*var socketio = util.SocketIO.getInstance();
       socketio.start();
       if (socketio.isRunning()) {
         socketio.setActivityHandler(this.createItem, this);
-      }
+      }*/
     },
 
     /**

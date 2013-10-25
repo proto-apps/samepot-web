@@ -25,9 +25,6 @@ module Samepot
     # Save path to uploaded file
     config.upload_path = Rails.root.join("uploads")
 
-    # Socket.io client library path
-    config.socketio_host = ""
-
     # jQuery plugins
     config.assets.paths << "vendor/assets/jquery_notification/images"
     config.assets.paths << "vendor/assets/jquery.fs.selecter/images"

@@ -30,11 +30,11 @@ ui.navi = {};
       return;
     }
 
-    var socketio = util.SocketIO.getInstance();
+    /*var socketio = util.SocketIO.getInstance();
     socketio.start();
     if (socketio.isRunning()) {
       socketio.setActivityHandler(ui.navi.lamp_);
-    }
+    }*/
   };
 
 

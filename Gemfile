@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.0.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.5.2'
+gem 'jbuilder'
 
 # Use MySQL as RDBMS
 gem 'mysql2'
@@ -18,7 +18,7 @@ gem 'redis-rails'
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 4.0.0'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 # Gems used as client side libraries
