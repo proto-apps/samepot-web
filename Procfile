@@ -1,2 +1,2 @@
-unicorn: bundle exec unicorn_rails -p 3000 -c config/unicorn.rb
+unicorn: bundle exec rails s Puma -p 3000 -C config/puma.rb
 sidekiq: bundle exec sidekiq -C config/sidekiq.yml
