@@ -3,69 +3,29 @@
 <% cache "sites_index_en" do %>
   <div class="top-wrap">
     <div class="top-container">
-      <div class="banner-contents boxes">
-        <div class="box-60 left">
-          <div class="banner">
-            <h2 class="banner-text"><%= t 'sites.index.teaser1' %></h2>
-            <h4 class="banner-text-sub">
-              <%= t 'sites.index.teaser2' %><br>
-              <%= t 'sites.index.prototype' %>
-            </h4>
-          </div>
-          <div class="banner-signup">
-            <%= link_to t('sites.index.free'), signup_path, {:class => 'button'} %>
-          </div>
-        </div>
-        <div class="box-40 right">
-          <form id="login-form" class="form">
-            <div>
-              <input class="input" type="text" name="email" value="" placeholder="<%= t 'common.email' %>" autocomplete="off" />
-            </div>
-            <div>
-              <input class="input" type="password" name="password" value="" placeholder="<%= t 'common.password' %>" />
-            </div>
-            <p class="actions">
-              <button class="button primary large" type="submit"><%= t 'sites.index.signin' %></button>
-              <a class="link" href="#"><%= t 'sites.index.forgot_password' %></a>
-            </p>
-            <div class="demo">
-              <h4><%= t 'sites.index.demo.description' %></h4>
-              <p><%= t 'sites.index.demo1.user' %>, <%= t 'sites.index.demo1.password' %></p>
-              <p><%= t 'sites.index.demo2.user' %>, <%= t 'sites.index.demo2.password' %></p>
-            </div>
-            <div id="login-form-errors" class="errors"></div>
-          </form>
+      <div class="banner-contents">
+        <div class="banner">
+          <h2 class="banner-text"><%= t 'sites.index.teaser1' %></h2>
         </div>
       </div>
-    </div>
-    <div class="top-container">
-      <div id="features" class="feature-contents boxes">
-        <h2><%= t 'sites.index.features' %></h2>
-        <div class="feature box-25 left">
-          <div class="feature-inner">
-            <h3><%= t 'sites.index.realtime.title' %></h3>
-            <p><%= t 'sites.index.realtime.description' %></p>
-          </div>
+
+      <form id="login-form" class="form">
+        <div>
+          <input class="input" type="text" name="email" value="" placeholder="<%= t 'common.email' %>" autocomplete="off" />
         </div>
-        <div class="feature box-25 left">
-          <div class="feature-inner">
-            <h3><%= t 'sites.index.membersnow.title' %></h3>
-            <p><%= t 'sites.index.membersnow.description' %></p>
-          </div>
+        <div>
+          <input class="input" type="password" name="password" value="" placeholder="<%= t 'common.password' %>" autocomplete="off" />
         </div>
-        <div class="feature box-25 left">
-          <div class="feature-inner">
-            <h3><%= t 'sites.index.task.title' %></h3>
-            <p><%= t 'sites.index.task.description' %></p>
-          </div>
+        <p class="actions">
+          <button class="button primary large" type="submit"><%= t 'sites.index.signin' %></button>
+        </p>
+        <div class="demo">
+          <h4><%= t 'sites.index.demo.description' %></h4>
+          <p><%= t 'sites.index.demo1.user' %>, <%= t 'sites.index.demo1.password' %></p>
+          <p><%= t 'sites.index.demo2.user' %>, <%= t 'sites.index.demo2.password' %></p>
         </div>
-        <div class="feature box-25 left">
-          <div class="feature-inner">
-            <h3><%= t 'sites.index.canvas.title' %></h3>
-            <p><%= t 'sites.index.canvas.description' %></p>
-          </div>
-        </div>
-      </div>
+        <div id="login-form-errors" class="errors"></div>
+      </form>
     </div>
   </div>
 <% end %>

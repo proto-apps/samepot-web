@@ -1,42 +1,33 @@
 <% @title = t('home.title') %>
 
 <div class="container">
-  <div class="boxes">
-    <div class="box-70 left">
-      <% if create_project? %>
-      <div class="contents-menu">
-        <%= link_to t('home.create_project'), projects_new_path, class: "button primary icon add" %>
-      </div>
-      <% end %>
-      <div class="contents">
-        <div class="boxes">
-          <% current_user.projects.each do |project| %>
-            <div class="box-50 left">
-              <div class="project-wrap">
-                <a class="project" href="<%= project_path(project.access_token) %>">
-                  <h2><%= project.name %></h2>
-                  <ul>
-                    <% project.users.each do |user| %>
-                      <li>
-                        <% if user.image_token %>
-                          <%= image_tag download_image_path(token: user.image_token, size: "small"), title: user.name %>
-                        <% else %>
-                          <%= user_image_tag "small", title: user.name %>
-                        <% end %>
-                      </li>
-                    <% end %>
-                  </ul>
-                </a>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
+  <% if create_project? %>
+    <div class="contents-menu">
+      <%= link_to t('home.create_project'), projects_new_path, class: "button primary icon add" %>
     </div>
-    <div class="box-30 right">
-      <div style="margin-top: 5px; min-height: 100px;">
-        <p style="padding-top: 15px; padding-left: 20px; font-size:14px;">Advertising area</p>
-      </div>
+  <% end %>
+  <div class="contents">
+    <div class="boxes">
+      <% current_user.projects.each do |project| %>
+        <div class="box-50 left">
+          <div class="project-wrap">
+            <a class="project" href="<%= project_path(project.access_token) %>">
+              <h2><%= project.name %></h2>
+              <ul>
+                <% project.users.each do |user| %>
+                  <li>
+                    <% if user.image_token %>
+                      <%= image_tag download_image_path(token: user.image_token, size: "small"), title: user.name %>
+                    <% else %>
+                      <%= user_image_tag "small", title: user.name %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </a>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

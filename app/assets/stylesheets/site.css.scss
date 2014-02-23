@@ -143,57 +143,19 @@ ul.social {
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .top-container {
   height: 100%;
   text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
 
-  .banner-contents {
-    margin-top: 10%;
+  .banner-contents,
+  #login-form {
+    margin-top: 40px;
     padding: 0 5%;
+    text-align: center;
   }
-
-  .feature-contents {
-    margin-top: 10%;
-    padding: 5% 5%;
-
-    h2 {
-      padding: 0 10px 20px;
-      color: #fff;
-    }
-  }
-}
-
-.feature {
-  .feature-inner {
-    height: 250px;
-    margin: 0 10px;
-    background-color: #f3f3f3;
-    box-shadow: 4px 4px 4px rgba(0,0,0,0.5);
-  }
-
-  h3 {
-    padding: 20px 10px 10px;
-    font-size: 15px;
-  }
-
-  p {
-    padding: 0 10px;
-    line-height: 2.0;
-    font-size: 14px;
-  }
-}
-
-
-.site-container {
-  position: absolute;
-  top: 56px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  text-shadow: 0 -1px 1px rgba(0,0,0,0.5);
 }
 
 .banner {
@@ -207,16 +169,24 @@ ul.social {
   font-size: 32px;
 }
 
-.banner-text-sub {
-  padding: 0 0 2em;
-  color: #f1e6c8;
-  font-size: 16px;
-  font-weight: normal;
-}
+#login-form {
+  & > div {
+    margin-bottom: 10px;
+  }
 
-.banner-signup {
-  a.button {
-    width: 300px;
+  input[type=text],
+  input[type=password] {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 10px 10px;
+    border-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .button {
+    width: 400px;
     border: 1px solid #186098;
     border-bottom-color: #003672;
     background-color: #0066d8;
@@ -233,36 +203,6 @@ ul.social {
       @include background-image(linear-gradient(#4da1e3, #0072f2));
       color: #fff;
     }
-  }
-}
-
-#login-form {
-  margin: 1em auto 0;
-
-  & > div {
-    margin-bottom: 10px;
-  }
-
-  input[type=text],
-  input[type=password] {
-    box-sizing: border-box;
-    width: 350px;
-    padding: 10px 10px;
-    border-color: rgba(0, 0, 0, 0.1);
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    font-size: 16px;
-  }
-
-  p.actions {
-  }
-
-  .button {
-    border: 1px solid #666;
-  }
-
-  .link {
-    color: #f0f0f0;
   }
 
   .demo {

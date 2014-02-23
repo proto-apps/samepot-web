@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.0.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
@@ -17,7 +17,7 @@ gem 'redis-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', '~> 4.0.0'
+  gem 'sass-rails', '~> 4.0.1'
   gem 'uglifier'
 end
 
